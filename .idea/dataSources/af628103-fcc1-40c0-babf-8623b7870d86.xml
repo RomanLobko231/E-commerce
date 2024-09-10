@@ -3,9 +3,17 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.53">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>764</IntrospectionStateNumber>
+      <Grants>1||-9223372036854775808|c|G
+1||10|c|G
+1||10|C|G
+1||10|T|G
+4||-9223372036854775808|c|G
+4||10|c|G
+4||10|C|G
+4||10|T|G</Grants>
+      <IntrospectionStateNumber>772</IntrospectionStateNumber>
       <ServerVersion>16.1</ServerVersion>
-      <StartupTime>1724784288</StartupTime>
+      <StartupTime>1725650639</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1404,7 +1412,6 @@ true posixrules
 13212||10|C|G
 13212||-9223372036854775808|U|G
 13212||10|U|G</Grants>
-      <IntrospectionStateNumber>753</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>micro</OwnerName>
     </database>
@@ -1418,7 +1425,7 @@ true posixrules
 13212||10|C|G
 13212||-9223372036854775808|U|G
 13212||10|U|G</Grants>
-      <IntrospectionStateNumber>764</IntrospectionStateNumber>
+      <IntrospectionStateNumber>772</IntrospectionStateNumber>
       <ObjectId>16389</ObjectId>
       <OwnerName>micro</OwnerName>
     </database>
@@ -5320,7 +5327,6 @@ true posixrules
 13560||10|t|G
 13560||10|D|G
 13560||10|w|G</Grants>
-      <IntrospectionStateNumber>764</IntrospectionStateNumber>
       <LastIntrospectionLocalTimestamp>2024-08-27.19:34:13</LastIntrospectionLocalTimestamp>
       <ObjectId>13212</ObjectId>
       <StateNumber>530</StateNumber>
@@ -6510,7 +6516,6 @@ true posixrules
 12340||10|t|G
 12340||10|D|G
 12340||10|w|G</Grants>
-      <IntrospectionStateNumber>764</IntrospectionStateNumber>
       <LastIntrospectionLocalTimestamp>2024-08-27.19:34:13</LastIntrospectionLocalTimestamp>
       <ObjectId>11</ObjectId>
       <StateNumber>524</StateNumber>
@@ -6519,26 +6524,26 @@ true posixrules
     <schema id="265" parent="4" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>764</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-08-27.19:34:13</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>772</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-09-06.20:17:12</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
     <sequence id="266" parent="265" name="category_seq">
       <ObjectId>16418</ObjectId>
-      <SequenceIdentity>1+50</SequenceIdentity>
+      <SequenceIdentity>1+10</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>758</StateNumber>
-      <StoredType>bigint|0s</StoredType>
+      <StateNumber>765</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <OwnerName>micro</OwnerName>
     </sequence>
     <sequence id="267" parent="265" name="product_seq">
       <ObjectId>16419</ObjectId>
-      <SequenceIdentity>1+50</SequenceIdentity>
+      <SequenceIdentity>1+10</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>758</StateNumber>
-      <StoredType>bigint|0s</StoredType>
+      <StateNumber>765</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <OwnerName>micro</OwnerName>
     </sequence>
     <table id="268" parent="265" name="category">

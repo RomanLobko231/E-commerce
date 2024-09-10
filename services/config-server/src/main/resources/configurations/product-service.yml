@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: product-service
   datasource:
     url: jdbc:postgresql://localhost:5433/product
     username: micro
