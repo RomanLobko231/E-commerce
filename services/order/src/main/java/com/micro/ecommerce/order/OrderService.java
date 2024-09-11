@@ -1,15 +1,19 @@
 package com.micro.ecommerce.order;
 
 import com.micro.ecommerce.customer.CustomerClient;
+import com.micro.ecommerce.customer.CustomerInfoResponse;
 import com.micro.ecommerce.exceptions.CustomerNotFoundException;
-import com.micro.ecommerce.orderline.OrderLine;
+import com.micro.ecommerce.kafka.OrderConfirmation;
+import com.micro.ecommerce.kafka.OrderProducer;
 import com.micro.ecommerce.orderline.OrderLineRequest;
 import com.micro.ecommerce.orderline.OrderLineService;
 import com.micro.ecommerce.product.ProductClient;
 import com.micro.ecommerce.product.PurchaseRequest;
-import jakarta.validation.Valid;
+import com.micro.ecommerce.product.PurchaseResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -25,14 +29,17 @@ public class OrderService {
 
     private final OrderLineService orderLineService;
 
+    private final OrderProducer orderProducer;
+
 
     public Integer createOrder(OrderRequest request) {
-        if (!customerClient.existsById(request.customerId())) {
-            throw new CustomerNotFoundException("Customer with id %s not found"
-                    .formatted(request.customerId()));
-        }
+        CustomerInfoResponse customer = customerClient
+                .findCustomerById(request.customerId())
+                .orElseThrow(
+                        () -> new CustomerNotFoundException("Customer with id %s not found".formatted(request.customerId()))
+                );
 
-        productClient.purchaseProducts(request.purchaseRequests());
+        List<PurchaseResponse> purchasedProducts = productClient.purchaseProducts(request.purchaseRequests());
 
         Order savedOrder = orderRepository.save(orderMapper.toOrder(request));
 
@@ -47,8 +54,16 @@ public class OrderService {
             );
         }
 
+        orderProducer.sendOrderConfirmation(
+                new OrderConfirmation(
+                        request.reference(),
+                        request.amount(),
+                        request.paymentMethod(),
+                        customer,
+                        purchasedProducts
+                )
+        );
 
-
-        return null;
+        return savedOrder.getId();
     }
 }

@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface CustomerClient {
 
     @GetMapping("/{id}")
-    Optional<CustomerResponse> findCustomerById(@PathVariable("id") String id);
+    Optional<CustomerInfoResponse> findCustomerById(@PathVariable("id") String id);
 
     @GetMapping("/exists/{id}")
     boolean existsById(@PathVariable("id") String id);

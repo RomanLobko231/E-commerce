@@ -1,6 +1,6 @@
 package com.micro.ecommerce.customer;
 
-public record CustomerResponse(
+public record CustomerInfoResponse(
 
         String id,
 
