@@ -11,9 +11,9 @@
 4||10|c|G
 4||10|C|G
 4||10|T|G</Grants>
-      <IntrospectionStateNumber>772</IntrospectionStateNumber>
+      <IntrospectionStateNumber>773</IntrospectionStateNumber>
       <ServerVersion>16.1</ServerVersion>
-      <StartupTime>1725650639</StartupTime>
+      <StartupTime>1726179791</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -238,7 +238,7 @@ false America/Rio_Branco
 false America/Rosario
 true America/Santa_Isabel
 false America/Santarem
-false America/Santiago
+true America/Santiago
 false America/Santo_Domingo
 false America/Sao_Paulo
 true America/Scoresbysund
@@ -436,7 +436,7 @@ false CHAST
 false CHUT
 false CKT
 true CLST
-false CLT
+true CLT
 false COT
 false CST
 true CST6CDT
@@ -449,13 +449,13 @@ true Canada/Newfoundland
 true Canada/Pacific
 false Canada/Saskatchewan
 false Canada/Yukon
-false Chile/Continental
-false Chile/EasterIsland
+true Chile/Continental
+true Chile/EasterIsland
 true Cuba
 false DAVT
 false DDUT
-false EASST
-false EAST
+true EASST
+true EAST
 false EAT
 true EDT
 true EEST
@@ -691,7 +691,7 @@ false Pacific/Auckland
 false Pacific/Bougainville
 false Pacific/Chatham
 false Pacific/Chuuk
-false Pacific/Easter
+true Pacific/Easter
 false Pacific/Efate
 false Pacific/Enderbury
 false Pacific/Fakaofo
@@ -993,7 +993,7 @@ false posix/America/Rio_Branco
 false posix/America/Rosario
 true posix/America/Santa_Isabel
 false posix/America/Santarem
-false posix/America/Santiago
+true posix/America/Santiago
 false posix/America/Santo_Domingo
 false posix/America/Sao_Paulo
 true posix/America/Scoresbysund
@@ -1179,8 +1179,8 @@ true posix/Canada/Newfoundland
 true posix/Canada/Pacific
 false posix/Canada/Saskatchewan
 false posix/Canada/Yukon
-false posix/Chile/Continental
-false posix/Chile/EasterIsland
+true posix/Chile/Continental
+true posix/Chile/EasterIsland
 true posix/Cuba
 true posix/EET
 false posix/EST
@@ -1330,7 +1330,7 @@ false posix/Pacific/Auckland
 false posix/Pacific/Bougainville
 false posix/Pacific/Chatham
 false posix/Pacific/Chuuk
-false posix/Pacific/Easter
+true posix/Pacific/Easter
 false posix/Pacific/Efate
 false posix/Pacific/Enderbury
 false posix/Pacific/Fakaofo
@@ -1396,11 +1396,7 @@ false posix/Zulu
 true posixrules
 </TimeZones>
     </root>
-    <database id="2" parent="1" name="micro">
-      <ObjectId>16384</ObjectId>
-      <OwnerName>micro</OwnerName>
-    </database>
-    <database id="3" parent="1" name="postgres">
+    <database id="2" parent="1" name="postgres">
       <Comment>default administrative connection database</Comment>
       <Current>1</Current>
       <Grants>11||10|C|G
@@ -1415,6 +1411,10 @@ true posixrules
       <ObjectId>5</ObjectId>
       <OwnerName>micro</OwnerName>
     </database>
+    <database id="3" parent="1" name="micro">
+      <ObjectId>16384</ObjectId>
+      <OwnerName>micro</OwnerName>
+    </database>
     <database id="4" parent="1" name="product">
       <Grants>11||10|C|G
 11||-9223372036854775808|U|G
@@ -1425,7 +1425,7 @@ true posixrules
 13212||10|C|G
 13212||-9223372036854775808|U|G
 13212||10|U|G</Grants>
-      <IntrospectionStateNumber>772</IntrospectionStateNumber>
+      <IntrospectionStateNumber>773</IntrospectionStateNumber>
       <ObjectId>16389</ObjectId>
       <OwnerName>micro</OwnerName>
     </database>
@@ -6524,8 +6524,8 @@ true posixrules
     <schema id="265" parent="4" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>772</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-09-06.20:17:12</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>773</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-09-12.22:23:18</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>

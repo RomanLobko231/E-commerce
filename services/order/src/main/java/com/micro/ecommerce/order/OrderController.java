@@ -3,10 +3,9 @@ package com.micro.ecommerce.order;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/order")
@@ -19,4 +18,20 @@ public class OrderController {
     public ResponseEntity<Integer> createOrder(@RequestBody @Valid OrderRequest request){
         return ResponseEntity.ok(orderService.createOrder(request));
     }
+
+    @GetMapping
+    public ResponseEntity<List<OrderResponse>> findAll(){
+        return ResponseEntity.ok(orderService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderResponse> findById(@PathVariable("id") Integer id){
+        return ResponseEntity.ok(orderService.findById(id));
+    }
+
+    public ResponseEntity<Void> deleteById(@PathVariable("id") Integer id){
+        orderService.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
 }

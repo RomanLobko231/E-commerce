@@ -11,6 +11,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+//Rest Templates example
+
 @Service
 @RequiredArgsConstructor
 public class ProductClient {

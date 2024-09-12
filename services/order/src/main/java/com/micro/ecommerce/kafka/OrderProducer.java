@@ -22,6 +22,7 @@ public class OrderProducer {
                 .setHeader(KafkaHeaders.TOPIC, "order-topic")
                 .build();
         kafkaTemplate.send(message);
+        log.info("Order confirmation sent");
     }
 
 }

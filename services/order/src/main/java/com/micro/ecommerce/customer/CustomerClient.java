@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Optional;
 
+//OpenFeign example
+
 @FeignClient(
         name = "customer-service",
         url = "${application.config.customer-url}"
