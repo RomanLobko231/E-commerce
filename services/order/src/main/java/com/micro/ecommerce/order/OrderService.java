@@ -8,6 +8,8 @@ import com.micro.ecommerce.kafka.OrderConfirmation;
 import com.micro.ecommerce.kafka.OrderProducer;
 import com.micro.ecommerce.orderline.OrderLineRequest;
 import com.micro.ecommerce.orderline.OrderLineService;
+import com.micro.ecommerce.payment.PaymentClient;
+import com.micro.ecommerce.payment.PaymentRequest;
 import com.micro.ecommerce.product.ProductClient;
 import com.micro.ecommerce.product.PurchaseRequest;
 import com.micro.ecommerce.product.PurchaseResponse;
@@ -33,6 +35,8 @@ public class OrderService {
 
     private final OrderProducer orderProducer;
 
+    private final PaymentClient paymentClient;
+
 
     public Integer createOrder(OrderRequest request) {
         CustomerInfoResponse customer = customerClient
@@ -55,6 +59,16 @@ public class OrderService {
                     )
             );
         }
+
+        paymentClient.requestOrderPayment(
+                new PaymentRequest(
+                        request.amount(),
+                        request.paymentMethod(),
+                        savedOrder.getId(),
+                        request.reference(),
+                        customer
+                )
+        );
 
         orderProducer.sendOrderConfirmation(
                 new OrderConfirmation(
