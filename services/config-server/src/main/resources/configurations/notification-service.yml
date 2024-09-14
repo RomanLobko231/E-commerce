@@ -1,0 +1,42 @@
+spring:
+  data:
+    mongodb:
+      username: micro
+      password: micro
+      host: localhost
+      port: 27017
+      database: notification
+      authentication-database: admin
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id:
+        - paymentGroup
+        - orderGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.type.mapping:
+          - orderConfirmation:com.micro.ecommerce.kafka.OrderConfirmation
+          - paymentConfirmation:com.micro.ecommerce.notification.PaymentNotification
+        spring.json.trusted.packages: com.micro.ecommerce.*
+  mail:
+    host: localhost
+    port: 1025
+    username: micro
+    password: micro
+    properties:
+      mail:
+        smtp:
+          trust: '*'
+        auth: true
+        starttls:
+          enabled: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+    sender-email: romash.hk@gmail.com
+
+server:
+  port: 8030

@@ -10,8 +10,14 @@
       <user-name>micro</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="database" qname="product">
-            <node kind="schema" qname="public" />
+          <node negative="1">
+            <node kind="database">
+              <name qname="order" />
+              <name qname="payment" />
+            </node>
+            <node kind="database" qname="product">
+              <node kind="schema" qname="public" />
+            </node>
           </node>
         </introspection-scope>
       </schema-mapping>
