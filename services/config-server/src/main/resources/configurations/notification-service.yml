@@ -15,12 +15,12 @@ spring:
         - orderGroup
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       properties:
         spring.json.type.mapping:
-          - orderConfirmation:com.micro.ecommerce.kafka.OrderConfirmation
-          - paymentConfirmation:com.micro.ecommerce.notification.PaymentNotification
-        spring.json.trusted.packages: com.micro.ecommerce.*
+          - orderConfirmation:com.micro.ecommerce.kafka.order.OrderConfirmation
+          - paymentConfirmation:com.micro.ecommerce.kafka.payment.PaymentConfirmation
+        spring.json.trusted.packages: '*'
   mail:
     host: localhost
     port: 1025

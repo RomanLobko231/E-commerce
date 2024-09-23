@@ -9,6 +9,8 @@ spring:
           uri: lb:http://CUSTOMER-SERVICE
           predicates:
             - Path=/api/v1/customer/**
+          filters:
+            - RewritePath=/api/v1/customer/(?<path>.*), /$\{path}
         - id: order-service
           uri: lb:http://ORDER-SERVICE
           predicates:
@@ -25,6 +27,31 @@ spring:
           uri: lb:http://PRODUCT-SERVICE
           predicates:
             - Path=/api/v1/product/**
+          filters:
+            - RewritePath=/api/v1/product/(?<path>.*), /$\{path}
+        - id: openapi
+          uri: http://localhost:8222
+          predicates:
+            - Path=/v3/api-docs/**
+          filters:
+            - RewritePath=/v3/api-docs/(?<path>.*), /api/v1/$\{path}/v3/api-docs
+        - id: swagger
+          uri: http://localhost:8222
+          predicates:
+            - Path=/swagger/**
+          filters:
+            - RewritePath=/swagger/(?<path>.*), /api/v1/$\{path}/swagger-ui.html
+
+
+springdoc:
+  cache:
+    disabled: true
+  version: 2.6.0
+  swagger-ui:
+    use-root-path: true
+  api-docs:
+    version: openapi_3_1
+
 
 server:
   port: 8222

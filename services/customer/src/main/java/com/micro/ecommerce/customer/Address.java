@@ -8,7 +8,6 @@ import org.springframework.validation.annotation.Validated;
 @Builder
 @Setter
 @Getter
-@Validated
 public class Address {
 
     private String street;

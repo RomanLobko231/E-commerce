@@ -1,12 +1,12 @@
 spring:
   datasource:
-    url: jdbc:postgres://localhost:5433/payment
+    url: jdbc:postgresql://localhost:5433/payment
     username: micro
     password: micro
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   kafka:

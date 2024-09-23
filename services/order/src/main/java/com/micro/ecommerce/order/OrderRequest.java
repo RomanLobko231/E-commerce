@@ -27,5 +27,4 @@ public record OrderRequest(
         @NotEmpty(message = "List must include at least one product")
         List<@Valid PurchaseRequest> purchaseRequests
 ) {
-
 }

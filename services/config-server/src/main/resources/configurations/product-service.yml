@@ -17,5 +17,19 @@ spring:
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
 
+springdoc:
+  version: 2.6.0
+  api-docs:
+    version: openapi_3_1
+  cache:
+    disabled: true
+  swagger-ui:
+    enabled: true
+    use-root-path: true
+
 server:
   port: 8050
+  forward-headers-strategy: framework
+
+
+
