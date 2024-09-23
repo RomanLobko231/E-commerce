@@ -7,6 +7,7 @@ import com.micro.ecommerce.product.responses.ProductPurchaseResponse;
 import com.micro.ecommerce.product.responses.ProductResponse;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ProductService {
 
     private final ProductRepository productRepository;
@@ -27,7 +29,7 @@ public class ProductService {
         return productRepository.save(product).getId();
     }
 
-    public List<ProductPurchaseResponse> purchaseProducts(List<ProductPurchaseRequest> productPurchaseRequests) {
+    public List<ProductPurchaseResponse> processPurchasedProducts(List<ProductPurchaseRequest> productPurchaseRequests) {
         List<Integer> requestedProductIds = productPurchaseRequests
                 .stream()
                 .map(ProductPurchaseRequest::productId)
@@ -42,7 +44,7 @@ public class ProductService {
                 .stream()
                 .collect(Collectors.toMap(Product::getId, product -> product));
 
-        List<ProductPurchaseResponse> purchaseResponseList = processPurchaseRequests(productPurchaseRequests, requestedProductsMap);
+        List<ProductPurchaseResponse> purchaseResponseList = processPurchasedProducts(productPurchaseRequests, requestedProductsMap);
         productRepository.saveAll(requestedProductsInStock);
 
         return purchaseResponseList;
@@ -61,7 +63,7 @@ public class ProductService {
                 .toList();
     }
 
-    private List<ProductPurchaseResponse> processPurchaseRequests(
+    private List<ProductPurchaseResponse> processPurchasedProducts(
             List<ProductPurchaseRequest> productPurchaseRequests,
             Map<Integer, Product> requestedProductsMap
     ) {
@@ -85,6 +87,8 @@ public class ProductService {
             product.setAvailableQuantity(newAvailableQuantity);
             successfullyPurchasedProducts.add(productMapper.toProductPurchaseResponse(product, productPurchaseRequest.requestedQuantity()));
         }
+
+        log.info("Products' new quantity was successfully calculated");
 
         return successfullyPurchasedProducts;
     }

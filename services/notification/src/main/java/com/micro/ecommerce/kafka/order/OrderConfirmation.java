@@ -1,6 +1,6 @@
 package com.micro.ecommerce.kafka.order;
 
-import com.micro.ecommerce.kafka.order.cutomer.Customer;
+import com.micro.ecommerce.kafka.order.customer.Customer;
 import com.micro.ecommerce.kafka.order.product.Product;
 import com.micro.ecommerce.kafka.payment.PaymentMethod;
 

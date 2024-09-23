@@ -8,5 +8,16 @@ spring:
       database: customer
       authentication-database: admin
 
+springdoc:
+  version: 2.6.0
+  api-docs:
+    version: openapi_3_1
+  cache:
+    disabled: true
+  swagger-ui:
+    enabled: true
+    use-root-path: true
+
 server:
   port: 8090
+  forward-headers-strategy: framework

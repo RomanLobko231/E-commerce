@@ -10,12 +10,12 @@ import java.util.List;
 public record OrderConfirmation(
         String orderReference,
 
-        BigDecimal totalAmount,
+        BigDecimal amount,
 
         PaymentMethod paymentMethod,
 
-        CustomerInfoResponse customerInfoResponse,
+        CustomerInfoResponse customer,
 
-        List<PurchaseResponse> purchasedProducts
+        List<PurchaseResponse> products
 ) {
 }

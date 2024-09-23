@@ -42,8 +42,9 @@ public class EmailService {
         variables.put("customerName", customerName);
         variables.put("amount", paymentDetails.amount());
         variables.put("orderReference", paymentDetails.orderReference());
+        String htmlTemplate = configureTemplate(variables, EmailType.PAYMENT_CONFIRMATION.getTemplate());
 
-        sendHtmlTemplateEmail(paymentDetails.customerEmail(), EmailType.PAYMENT_CONFIRMATION, variables);
+        sendHtmlTemplateEmail(paymentDetails.customerEmail(), EmailType.PAYMENT_CONFIRMATION.getSubject(), htmlTemplate);
     }
 
     @Async
@@ -55,31 +56,31 @@ public class EmailService {
         variables.put("amount", orderDetails.amount());
         variables.put("orderReference", orderDetails.orderReference());
         variables.put("products", orderDetails.products());
+        String htmlTemplate = configureTemplate(variables, EmailType.ORDER_CONFIRMATION.getTemplate());
 
-        sendHtmlTemplateEmail(orderDetails.customer().email(), EmailType.ORDER_CONFIRMATION, variables);
+        sendHtmlTemplateEmail(orderDetails.customer().email(), EmailType.ORDER_CONFIRMATION.getSubject(), htmlTemplate);
     }
 
 
     private void sendHtmlTemplateEmail(
             String customerEmail,
-            EmailType type,
-            Map<String, Object> templateVariables
-    ) throws MessagingException {
-        String htmlTemplate = configureTemplate(templateVariables, type);
+            String subject,
+            String htmlTemplate
+            ) throws MessagingException {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
-        configureMimeMessage(mimeMessage, customerEmail, type, htmlTemplate);
+        configureMimeMessage(mimeMessage, customerEmail, subject, htmlTemplate);
         mailSender.send(mimeMessage);
 
         log.info("Email is sent to {}", customerEmail);
     }
 
-    private String configureTemplate(Map<String, Object> templateVariables, EmailType emailType) {
+    private String configureTemplate(Map<String, Object> templateVariables, String templateName) {
         Context context = new Context();
         context.setVariables(templateVariables);
-        return templateEngine.process(emailType.getTemplate(), context);
+        return templateEngine.process(templateName, context);
     }
 
-    private void configureMimeMessage(MimeMessage mimeMessage, String customerEmail, EmailType emailType, String body)
+    private void configureMimeMessage(MimeMessage mimeMessage, String customerEmail, String subject, String body)
             throws MessagingException {
         MimeMessageHelper helper = new MimeMessageHelper(
                 mimeMessage,
@@ -88,7 +89,7 @@ public class EmailService {
         );
         helper.setFrom(senderEmail);
         helper.setTo(customerEmail);
-        helper.setSubject(emailType.getSubject());
+        helper.setSubject(subject);
         helper.setText(body, true);
     }
 

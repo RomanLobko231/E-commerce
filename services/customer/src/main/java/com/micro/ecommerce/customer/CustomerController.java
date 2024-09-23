@@ -1,5 +1,6 @@
 package com.micro.ecommerce.customer;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/customer")
+@Tag(name = "Customer Microservice", description = "Microservice that works with customer")
 @RequiredArgsConstructor
 public class CustomerController {
 
